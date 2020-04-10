@@ -50,7 +50,10 @@
 						<div class="row">
 							<div class="col-12 margin-bottom">
 								<h1 class="display-3">Welcome</h1>
-								<p class="lead">This website was designed to help make developing CSS components a breeze. To get started check out the components or examples.</p>
+								<p class="lead">
+									This website was designed to help make developing CSS components a breeze. To get started check out the components or examples. If there's a component you'd like
+									added you can submit a request below.
+								</p>
 							</div>
 							<div class="col-12">
 								<a href="#" class="btn btn-primary align-bottom mr-2">Components</a>
@@ -80,8 +83,27 @@
 
 		<main>
 			<div class="container">
-				<!-- Form -->
-				<h4 class="display-4">Request Component</h4>
+				<div class="row">
+					<div class="col-12 col-md-8">
+						<h4 class="display-4">Request Component</h4>
+						<form>
+							<div class="form-group">
+								<label for="inputName">Component Name</label>
+								<input class="form-control" type="text" id="inputName" />
+							</div>
+							<div class="form-group">
+								<label for="inputDescription">Component Description</label>
+								<textarea class="form-control" id="inputDescription" rows="5"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail">Email (optional)</label>
+								<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" />
+								<small id="emailHelp" class="form-text text-muted">We may contact you for further feedback. We'll never share your email.</small>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</main>
 
