@@ -1,0 +1,13 @@
+@mixin view-mobile() {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+
+.margin-bottom {
+	margin-bottom: 100px;
+
+	@include view-mobile() {
+		margin-bottom: 50px;
+	}
+}

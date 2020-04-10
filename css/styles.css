@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+.margin-bottom {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 767px) {
+  .margin-bottom {
+    margin-bottom: 50px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
