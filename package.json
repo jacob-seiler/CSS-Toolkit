@@ -1,0 +1,19 @@
+{
+  "name": "css-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacob-seiler/CSS-Toolkit.git"
+  },
+  "author": "Jacob Seiler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacob-seiler/CSS-Toolkit/issues"
+  },
+  "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme"
+}
