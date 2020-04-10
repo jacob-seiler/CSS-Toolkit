@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.5.0",
+    "popper.js": "^1.16.1"
   }
 }
