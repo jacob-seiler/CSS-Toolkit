@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jacob-seiler/CSS-Toolkit/issues"
   },
-  "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme"
+  "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
 }
