@@ -1,9 +1,51 @@
-@mixin view-mobile() {
-	@media (max-width: 767px) {
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+@mixin view-small() {
+	@media (min-width: 576px) {
 		@content;
 	}
 }
 
 .margin-bottom {
 	margin-bottom: 50px;
+}
+
+.margin-fix {
+	margin: 0 auto;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+main {
+	padding-bottom: 120px;
+
+	@include view-small() {
+		padding-bottom: 100px;
+	}
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: $light;
+
+	.container .row .col-sm-8 {
+		padding-right: 0;
+		padding-left: 0;
+
+		.breadcrumb {
+			background-color: inherit;
+		}
+	}
+
+	padding-bottom: 20px;
+
+	@include view-small() {
+		padding-bottom: 0px;
+	}
 }
