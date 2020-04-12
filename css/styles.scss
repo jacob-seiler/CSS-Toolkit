@@ -6,6 +6,12 @@
 	}
 }
 
+@mixin view-medium() {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
 .margin-bottom {
 	margin-bottom: 50px;
 }
@@ -48,4 +54,34 @@ footer {
 	@include view-small() {
 		padding-bottom: 0px;
 	}
+}
+
+.demo {
+	width: 100%;
+	height: 300px;
+
+	@include view-medium() {
+		height: 100%;
+	}
+
+	border-radius: 10px;
+	background-color: $light;
+}
+
+.box {
+	i {
+		width: 100px;
+		height: 100px;
+		transform: translateY(-0.5px) scaleY(1.01);
+	}
+
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+}
+
+span.colorpicker-input-addon::before {
+	background: none;
 }

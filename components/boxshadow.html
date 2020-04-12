@@ -6,6 +6,7 @@
 		<title>CSS Toolkit</title>
 
 		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link href="../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../css/styles.css" />
 	</head>
 	<body>
@@ -50,7 +51,7 @@
 					<div class="row align-items-center">
 						<div class="col-12 col-md-8">
 							<div class="row">
-								<div class="col-12 margin-bottom">
+								<div class="col-12">
 									<h1 class="display-3">Box Shadow</h1>
 									<p class="lead">
 										This website was designed to help make developing CSS components a breeze. To get started check out the components or examples. If there's a component you'd
@@ -58,24 +59,7 @@
 									</p>
 								</div>
 								<div class="col-12">
-									<a href="../components.html" class="btn btn-primary align-bottom mr-2">Components</a>
-									<a href="../examples.html" class="btn btn-primary">Examples</a>
 									<hr />
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="card">
-								<div class="card-header">
-									New Feature
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Box Shadow</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Check It Out!</a>
-								</div>
-								<div class="card-footer text-muted">
-									2 days ago
 								</div>
 							</div>
 						</div>
@@ -85,23 +69,74 @@
 
 			<div class="container">
 				<div class="row">
-					<div class="col-12 col-md-8">
-						<h4 class="display-4">Request Component</h4>
+					<div class="col-12 col-md-7 order-md-last">
+						<div class="demo">
+							<div class="box color" data-color="#0069D9">
+								<span class="colorpicker-input-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-5 order-md-first">
+						<h4 class="display-4">Customize</h4>
 						<form>
-							<div class="form-group">
-								<label for="inputName">Component Name</label>
-								<input class="form-control" type="text" id="inputName" />
+							<div class="form-group row">
+								<div class="col-12">
+									<label for="shadow" class="lead">Shadow Type</label>
+									<div class="row col-12">
+										<div class="btn-group btn-group-toggle" data-toggle="buttons">
+											<label class="btn btn-secondary active"> <input type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
+											<label class="btn btn-secondary"> <input type="radio" name="shadow" id="shadow-inset" /> Inset </label>
+											<label class="btn btn-secondary"> <input type="radio" name="shadow" id="shadow-none" /> None </label>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="inputDescription">Component Description</label>
-								<textarea class="form-control" id="inputDescription" rows="5"></textarea>
+							<div class="form-group row">
+								<div class="col-12">
+									<label for="position" class="lead">Position</label>
+									<div class="row">
+										<div class="col-6">
+											<label for="position">Horizontal</label>
+											<input class="form-control" type="number" value="0" id="position" />
+										</div>
+										<div class="col-6">
+											<label for="position">Vertical</label>
+											<input class="form-control" type="number" value="0" id="position" />
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="inputEmail">Email (optional)</label>
-								<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" />
-								<small id="emailHelp" class="form-text text-muted">We may contact you for further feedback. We'll never share your email.</small>
+							<div class="form-group row">
+								<div class="col-12">
+									<label for="radius" class="lead">Radius</label>
+									<div class="row">
+										<div class="col-6">
+											<label for="radius">Blur</label>
+											<input class="form-control" type="number" value="0" id="radius" />
+										</div>
+										<div class="col-6">
+											<label for="radius">Spread</label>
+											<input class="form-control" type="number" value="0" id="radius" />
+										</div>
+									</div>
+								</div>
 							</div>
-							<button type="submit" class="btn btn-outline-primary">Submit</button>
+							<div class="form-group row margin-bottom">
+								<div class="col-12">
+									<label for="inputName" class="lead">Color</label>
+									<div class="input-group color" title="Using format option">
+										<span class="input-group-append">
+											<span class="input-group-text colorpicker-input-addon"><i></i></span>
+										</span>
+										<input type="text" class="form-control input-lg" value="#000000" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-12">
+									<button type="button" class="btn btn-outline-success">View Code</button>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -130,5 +165,14 @@
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
 	<script src="../js/main.js"></script>
+	<script>
+		let x = 10;
+		let y = 10;
+		let blur = 5;
+		let spread = 0;
+
+		$(".box").css("box-shadow", x + "px " + y + "px " + blur + "px " + spread + "px rgba(0, 0, 0, 0.75)");
+	</script>
 </html>

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "bootstrap-colorpicker": "^3.2.0",
     "jquery": "^3.2.1",
     "popper.js": "^1.16.1"
   }
