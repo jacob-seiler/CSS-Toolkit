@@ -21,5 +21,17 @@
     "bootstrap-colorpicker": "^3.2.0",
     "jquery": "^3.2.1",
     "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-flatmap": "^1.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-rev": "^9.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-usemin": "^0.3.30"
   }
 }
