@@ -3,15 +3,12 @@
 const gulp = require("gulp");
 const del = require("del");
 const minify = require("gulp-minify");
-const concat = require("gulp-concat");
 const cleanCSS = require("gulp-clean-css");
-
-var uglify = require("gulp-uglify"),
-	usemin = require("gulp-usemin"),
-	rev = require("gulp-rev"),
-	cleanCss = require("gulp-clean-css"),
-	flatmap = require("gulp-flatmap"),
-	htmlmin = require("gulp-htmlmin");
+const htmlmin = require("gulp-htmlmin");
+const usemin = require("gulp-usemin");
+const uglify = require("gulp-uglify");
+const flatmap = require("gulp-flatmap");
+const rev = require("gulp-rev");
 
 gulp.task("clean", function () {
 	return del("build", { force: true });
