@@ -231,13 +231,9 @@
 			$("#radius-spread").change(updateBox);
 			$("#form-color").change(updateBox);
 
-			$(".form-btn").click(function () {
-				updateBox();
-			});
+			$(".form-btn").click(updateBox);
 
-			$(".btn-copy").click(function () {
-				copyCode();
-			});
+			$(".btn-copy").click(copyCode);
 
 			updateBox();
 		});
