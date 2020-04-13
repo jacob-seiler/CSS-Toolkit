@@ -6,6 +6,7 @@
 		<title>CSS Toolkit</title>
 
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" />
 		<link rel="stylesheet" href="css/styles.css" />
 	</head>
 	<body>
@@ -78,7 +79,7 @@
 									<p class="card-text">Manipulate the appearance of shadows on your CSS elements</p>
 									<a href="components/boxshadow.html" class="btn btn-primary" id="feature-button">Check It Out</a>
 								</div>
-								<div class="card-footer text-muted" id="feature-date">
+								<div class="card-footer text-muted relative-date">
 									04/12/2020
 								</div>
 							</div>
@@ -134,27 +135,4 @@
 	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 	<script src="js/main.js"></script>
-	<script>
-		function relativeDate() {
-			const element = $("#feature-date");
-			let today = new Date();
-			const date = new Date(element.text());
-			const days = Math.floor((today.getTime() - date.getTime()) / (1000 * 3600 * 24));
-
-			if (days < 0) {
-				$("#feature-button").addClass("disabled");
-
-				if (days == -1) element.text("Coming tomorrow");
-				else element.text("Coming in " + Math.abs(days) + " days");
-			} else {
-				if (days == 0) element.text("Added today");
-				else if (days === 1) element.text("Added yesterday");
-				else element.text("Added " + days + " days ago");
-			}
-		}
-
-		$(document).ready(function () {
-			relativeDate();
-		});
-	</script>
 </html>

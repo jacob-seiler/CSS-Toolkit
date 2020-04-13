@@ -181,47 +181,4 @@
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 	<script src="../js/main.js"></script>
-	<script>
-		function copyCode(self) {
-			let text;
-
-			if ($("#code-modal").is(":visible")) {
-				text = self.parent().parent().children(".modal-body").children("#code-paste").text();
-			} else {
-				const box = self.parent().parent().children(".demo-example").children(".box-example");
-				text = "box-shadow: " + box.css("box-shadow") + ";";
-			}
-
-			const temp = document.createElement("textarea");
-			temp.value = text;
-
-			document.body.appendChild(temp);
-			temp.select();
-			temp.setSelectionRange(0, 99999);
-			temp.focus();
-			document.execCommand("copy");
-			document.body.removeChild(temp);
-		}
-
-		function setCode(self) {
-			const box = self.parent().parent().children(".demo-example").children(".box-example");
-			const text = "box-shadow: " + box.css("box-shadow") + ";";
-			const paste = $("#code-paste").text(text);
-		}
-
-		$(document).ready(function () {
-			$(".btn-copy").on("shown.bs.popover", function () {
-				copyCode($(this));
-			});
-
-			$(".btn-view").click(function () {
-				setCode($(this));
-			});
-
-			$(".popover-dismiss").popover({
-				trigger: "focus",
-			});
-			$('[data-toggle="popover"]').popover();
-		});
-	</script>
 </html>
