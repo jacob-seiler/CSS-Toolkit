@@ -36,9 +36,13 @@
 							<a class="nav-link" href="examples.html">Examples</a>
 						</li>
 					</ul>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search" aria-label="Search" />
-						<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+					<form id="search-form" class="form-inline my-2 my-lg-0 dropdown">
+						<input class="form-control mr-sm-2 dropdown-toggle" id="search" type="text" aria-label="Search" placeholder="Search" autocomplete="off" onkeyup="filter()" />
+						<div class="dropdown-menu" data-toggle="dropdown" role="menu" aria-labelledby="dropdownMenuButton" id="search-dropdown">
+							<a class="dropdown-item" href="components/boxshadow.html" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Component</span></a>
+							<a class="dropdown-item" href="examples/boxshadow.html" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Example</span></a>
+							<p id="no-results" class="dropdown-item mb-0">No Results</p>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -53,8 +57,8 @@
 								<div class="col-12 margin-bottom">
 									<h1 class="display-3">Welcome</h1>
 									<p class="lead">
-										This website was designed to help make developing CSS components a breeze. To get started check out the components or examples. If there's a component you'd
-										like added you can submit a request below.
+										This website was designed to help make styling CSS components a breeze. To get started check out the components or examples. If there's a component you'd like
+										added, you can submit a request below.
 									</p>
 								</div>
 								<div class="col-12">
@@ -131,7 +135,7 @@
 	<script src="node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 	<script src="js/main.js"></script>
 	<script>
-		$(document).ready(function () {
+		function relativeDate() {
 			const element = $("#feature-date");
 			let today = new Date();
 			const date = new Date(element.text());
@@ -147,6 +151,10 @@
 				else if (days === 1) element.text("Added yesterday");
 				else element.text("Added " + days + " days ago");
 			}
+		}
+
+		$(document).ready(function () {
+			relativeDate();
 		});
 	</script>
 </html>
