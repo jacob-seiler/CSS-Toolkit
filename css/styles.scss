@@ -1,4 +1,5 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+$light: #f8f9fa;
+$primary: #0069d9;
 
 @mixin view-small() {
 	@media (min-width: 576px) {

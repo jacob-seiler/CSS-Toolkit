@@ -37,7 +37,7 @@ gulp.task("usemin", function () {
 							rev(),
 						],
 						inlinejs: [uglify()],
-						inlinecss: [cleanCss(), "concat"],
+						inlinecss: [cleanCSS({ compatibility: "ie9", advanced: false }), "concat"],
 					})
 				);
 			})
