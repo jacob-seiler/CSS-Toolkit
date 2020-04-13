@@ -69,17 +69,16 @@ footer {
 }
 
 .box {
-	i {
-		width: 100px;
-		height: 100px;
-		transform: translateY(-0.5px) scaleY(1.01);
-	}
+	width: 100px;
+	height: 100px;
 
 	position: absolute;
 	left: 50%;
 	margin-left: -50px;
 	top: 50%;
 	margin-top: -50px;
+
+	background-color: $primary;
 }
 
 span.colorpicker-input-addon::before {

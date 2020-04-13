@@ -45,6 +45,26 @@
 			</div>
 		</nav>
 
+		<div class="modal fade" id="code-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabel">Box Shadow Code</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="code-paste"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary btn-copy">Copy Code</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<main>
 			<div class="jumbotron jumbotron-fluid">
 				<div class="container">
@@ -71,9 +91,7 @@
 				<div class="row">
 					<div class="col-12 col-md-7 order-md-last">
 						<div class="demo">
-							<div class="box color" data-color="#0069D9">
-								<span class="colorpicker-input-addon"><i></i></span>
-							</div>
+							<div class="box"></div>
 						</div>
 					</div>
 					<div class="col-12 col-md-5 order-md-first">
@@ -84,57 +102,58 @@
 									<label for="shadow" class="lead">Shadow Type</label>
 									<div class="row col-12">
 										<div class="btn-group btn-group-toggle" data-toggle="buttons">
-											<label class="btn btn-secondary active"> <input type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
-											<label class="btn btn-secondary"> <input type="radio" name="shadow" id="shadow-inset" /> Inset </label>
-											<label class="btn btn-secondary"> <input type="radio" name="shadow" id="shadow-none" /> None </label>
+											<label class="btn btn-secondary active"> <input class="form-btn" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
+											<label class="btn btn-secondary"> <input class="form-btn" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
+											<label class="btn btn-secondary"> <input class="form-btn" type="radio" name="shadow" id="shadow-none" /> None </label>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-12">
-									<label for="position" class="lead">Position</label>
+									<label class="lead">Position</label>
 									<div class="row">
 										<div class="col-6">
-											<label for="position">Horizontal</label>
-											<input class="form-control" type="number" value="0" id="position" />
+											<label for="position-h">Horizontal</label>
+											<input class="form-control" type="number" value="10" name="position-h" id="position-h" />
 										</div>
 										<div class="col-6">
-											<label for="position">Vertical</label>
-											<input class="form-control" type="number" value="0" id="position" />
+											<label for="position-v">Vertical</label>
+											<input class="form-control" type="number" value="10" name="position-v" id="position-v" />
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-12">
-									<label for="radius" class="lead">Radius</label>
+									<label class="lead">Radius</label>
 									<div class="row">
 										<div class="col-6">
-											<label for="radius">Blur</label>
-											<input class="form-control" type="number" value="0" id="radius" />
+											<label for="radius-blur">Blur</label>
+											<input class="form-control" type="number" value="5" name="radius-blur" id="radius-blur" />
 										</div>
 										<div class="col-6">
-											<label for="radius">Spread</label>
-											<input class="form-control" type="number" value="0" id="radius" />
+											<label for="radius-spread">Spread</label>
+											<input class="form-control" type="number" value="0" name="radius-spread" id="radius-spread" />
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-group row margin-bottom">
 								<div class="col-12">
-									<label for="inputName" class="lead">Color</label>
+									<label for="color" class="lead">Color</label>
 									<div class="input-group color" title="Using format option">
 										<span class="input-group-append">
 											<span class="input-group-text colorpicker-input-addon"><i></i></span>
 										</span>
-										<input type="text" class="form-control input-lg" value="#000000" />
+										<input type="text" class="form-control input-lg" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
 									</div>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-12">
-									<button type="button" class="btn btn-outline-success">View Code</button>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#code-modal">View Code</button>
+									<button type="button" class="btn btn-primary btn-copy">Copy Code</button>
 								</div>
 							</div>
 						</form>
@@ -168,11 +187,55 @@
 	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
 	<script src="../js/main.js"></script>
 	<script>
-		let x = 10;
-		let y = 10;
-		let blur = 5;
-		let spread = 0;
+		function updateBox() {
+			const type = $(".form-btn:checked").parent().text().trim();
+			let style = "none";
 
-		$(".box").css("box-shadow", x + "px " + y + "px " + blur + "px " + spread + "px rgba(0, 0, 0, 0.75)");
+			if (type !== "None") {
+				const color = $("#form-color").val();
+				const x = $("#position-h").val();
+				const y = $("#position-v").val();
+				const blur = $("#radius-blur").val();
+				const spread = $("#radius-spread").val();
+
+				style = x + "px " + y + "px " + blur + "px " + spread + "px " + color;
+
+				if (type === "Inset") style += " inset";
+			}
+
+			$(".box").css("box-shadow", style);
+			$("#code-paste").text("box-shadow: " + style + ";");
+		}
+
+		function copyCode() {
+			const text = "box-shadow: " + $(".box").css("box-shadow") + ";";
+			const temp = document.createElement("textarea");
+			temp.value = text;
+
+			document.body.appendChild(temp);
+			temp.select();
+			temp.setSelectionRange(0, 99999);
+			temp.focus();
+			document.execCommand("copy");
+			document.body.removeChild(temp);
+		}
+
+		$(document).ready(function () {
+			$("#position-h").change(updateBox);
+			$("#position-v").change(updateBox);
+			$("#radius-blur").change(updateBox);
+			$("#radius-spread").change(updateBox);
+			$("#form-color").change(updateBox);
+
+			$(".form-btn").click(function () {
+				updateBox();
+			});
+
+			$(".btn-copy").click(function () {
+				copyCode();
+			});
+
+			updateBox();
+		});
 	</script>
 </html>

@@ -1,4 +1,6 @@
-$(".color").colorpicker({
-	format: "auto",
-	autoInputFallback: false,
+$(document).ready(function () {
+	$(".color").colorpicker({
+		format: "rgba",
+		autoInputFallback: false,
+	});
 });

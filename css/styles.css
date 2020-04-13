@@ -10825,18 +10825,14 @@ footer .container .row .col-sm-8 .breadcrumb {
 }
 
 .box {
+  width: 100px;
+  height: 100px;
   position: absolute;
   left: 50%;
   margin-left: -50px;
   top: 50%;
   margin-top: -50px;
-}
-
-.box i {
-  width: 100px;
-  height: 100px;
-  -webkit-transform: translateY(-0.5px) scaleY(1.01);
-          transform: translateY(-0.5px) scaleY(1.01);
+  background-color: #007bff;
 }
 
 span.colorpicker-input-addon::before {
