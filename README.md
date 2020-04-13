@@ -1,4 +1,4 @@
 # CSS-Toolkit
 
 TODO
-- [] Copy button doesn't work in edge
+- [ ] Copy button doesn't work in edge
