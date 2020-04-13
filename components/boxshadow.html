@@ -65,15 +65,7 @@
 					</div>
 					<div class="modal-footer">
 						<a type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white;">Close</a>
-						<a
-							tabindex="0"
-							class="btn btn-primary btn-copy component"
-							role="button"
-							data-toggle="popover"
-							data-placement="top"
-							data-trigger="focus"
-							data-content="Coppied"
-							style="color: white;"
+						<a tabindex="0" class="btn btn-primary btn-copy" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Coppied" style="color: white;"
 							>Copy Code</a
 						>
 					</div>
@@ -114,9 +106,9 @@
 									<label for="shadow" class="lead">Shadow Type</label>
 									<div class="row col-12">
 										<div class="btn-group btn-group-toggle" data-toggle="buttons">
-											<label class="btn btn-secondary active"> <input class="form-btn update-boxshadow" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
-											<label class="btn btn-secondary"> <input class="form-btn update-boxshadow" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
-											<label class="btn btn-secondary"> <input class="form-btn update-boxshadow" type="radio" name="shadow" id="shadow-none" /> None </label>
+											<label class="btn btn-secondary active"> <input class="form-btn update" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
+											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
+											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-none" /> None </label>
 										</div>
 									</div>
 								</div>
@@ -127,11 +119,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="position-h">Horizontal</label>
-											<input class="form-control update-boxshadow" type="number" value="10" name="position-h" id="position-h" />
+											<input class="form-control update" type="number" value="10" name="position-h" id="position-h" />
 										</div>
 										<div class="col-6">
 											<label for="position-v">Vertical</label>
-											<input class="form-control update-boxshadow" type="number" value="10" name="position-v" id="position-v" />
+											<input class="form-control update" type="number" value="10" name="position-v" id="position-v" />
 										</div>
 									</div>
 								</div>
@@ -142,11 +134,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="radius-blur">Blur</label>
-											<input class="form-control update-boxshadow" type="number" value="5" name="radius-blur" id="radius-blur" />
+											<input class="form-control update" type="number" value="5" name="radius-blur" id="radius-blur" />
 										</div>
 										<div class="col-6">
 											<label for="radius-spread">Spread</label>
-											<input class="form-control update-boxshadow" type="number" value="0" name="radius-spread" id="radius-spread" />
+											<input class="form-control update" type="number" value="0" name="radius-spread" id="radius-spread" />
 										</div>
 									</div>
 								</div>
@@ -158,16 +150,16 @@
 										<span class="input-group-append">
 											<span class="input-group-text colorpicker-input-addon"><i></i></span>
 										</span>
-										<input type="text" class="form-control input-lg update-boxshadow" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
+										<input type="text" class="form-control input-lg update" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
 									</div>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-12">
-									<a type="button" class="btn btn-success btn-view component" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
+									<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
 									<a
 										tabindex="0"
-										class="btn btn-primary btn-copy component"
+										class="btn btn-primary btn-copy"
 										role="button"
 										data-toggle="popover"
 										data-placement="top"
@@ -209,5 +201,43 @@
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/components.js"></script>
 	<!-- endbuild -->
+	<script>
+		function update() {
+			const type = $(".form-btn:checked").parent().text().trim();
+			let style = "none";
+
+			if (type !== "None") {
+				const color = $("#form-color").val();
+				const x = $("#position-h").val();
+				const y = $("#position-v").val();
+				const blur = $("#radius-blur").val();
+				const spread = $("#radius-spread").val();
+
+				style = x + "px " + y + "px " + blur + "px " + spread + "px " + color;
+
+				if (type === "Inset") style += " inset";
+			}
+
+			$(".box").css("box-shadow", style);
+		}
+
+		$(document).ready(function () {
+			$(".update").each(function () {
+				if ($(this).hasClass("form-btn")) $(this).click(update);
+				else $(this).change(update);
+			});
+
+			$(".btn-view").click(function () {
+				setCode("box-shadow");
+			});
+
+			$(".btn-copy").on("shown.bs.popover", function () {
+				copyCode("box-shadow");
+			});
+
+			update();
+		});
+	</script>
 </html>

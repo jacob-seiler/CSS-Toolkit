@@ -185,5 +185,15 @@
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/examples.js"></script>
 	<!-- endbuild -->
+	<script>
+		$(".btn-view").click(function () {
+			setCode($(this), "box-shadow");
+		});
+
+		$(".btn-copy").on("shown.bs.popover", function () {
+			copyCode($(this), "box-shadow");
+		});
+	</script>
 </html>

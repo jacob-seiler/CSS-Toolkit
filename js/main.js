@@ -55,62 +55,6 @@ function relativeDates() {
 	});
 }
 
-// Components & Examples
-function setCode(self) {
-	if (self.hasClass("component")) {
-		$("#code-paste").text("box-shadow: " + $(".box").css("box-shadow") + ";");
-	} else {
-		const box = self.parent().parent().children(".demo-example").children(".box-example");
-		const text = "box-shadow: " + box.css("box-shadow") + ";";
-		const paste = $("#code-paste").text(text);
-	}
-}
-
-function copyCode(self) {
-	let text;
-
-	if (self.hasClass("component")) {
-		text = "box-shadow: " + $(".box").css("box-shadow") + ";";
-	} else {
-		if ($("#code-modal").is(":visible")) {
-			text = self.parent().parent().children(".modal-body").children("#code-paste").text();
-		} else {
-			const box = self.parent().parent().children(".demo-example").children(".box-example");
-			text = "box-shadow: " + box.css("box-shadow") + ";";
-		}
-	}
-
-	const temp = document.createElement("textarea");
-	temp.value = text;
-
-	document.body.appendChild(temp);
-	temp.select();
-	temp.setSelectionRange(0, 99999);
-	temp.focus();
-	document.execCommand("copy");
-	document.body.removeChild(temp);
-}
-
-// Box Shadow
-function updateBoxShadow() {
-	const type = $(".form-btn:checked").parent().text().trim();
-	let style = "none";
-
-	if (type !== "None") {
-		const color = $("#form-color").val();
-		const x = $("#position-h").val();
-		const y = $("#position-v").val();
-		const blur = $("#radius-blur").val();
-		const spread = $("#radius-spread").val();
-
-		style = x + "px " + y + "px " + blur + "px " + spread + "px " + color;
-
-		if (type === "Inset") style += " inset";
-	}
-
-	$(".box").css("box-shadow", style);
-}
-
 $(document).ready(function () {
 	// Setup color pickers
 	$(".color").colorpicker({
@@ -136,23 +80,7 @@ $(document).ready(function () {
 	});
 	$('[data-toggle="popover"]').popover();
 
-	// Components & Examples
-	$(".btn-view").click(function () {
-		setCode($(this));
-	});
-
-	$(".btn-copy").on("shown.bs.popover", function () {
-		copyCode($(this));
-	});
-
-	// Box Shadow
-	$(".update-boxshadow").each(function () {
-		if ($(this).hasClass("form-btn")) $(this).click(updateBoxShadow);
-		else $(this).change(updateBoxShadow);
-	});
-
 	// Call functions to setup
 	filter();
 	relativeDates();
-	updateBoxShadow();
 });
