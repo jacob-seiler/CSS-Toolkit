@@ -100,6 +100,35 @@
 					</div>
 					<div class="col-12 col-md-5 order-md-first">
 						<h4 class="display-4">Customize</h4>
+
+						<div class="row mb-3">
+							<div class="col-12">
+								<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
+								<a
+									tabindex="0"
+									class="btn btn-primary btn-copy"
+									role="button"
+									data-toggle="popover"
+									data-placement="top"
+									data-trigger="focus"
+									data-content="Coppied"
+									style="color: white;"
+									>Copy Code</a
+								>
+							</div>
+						</div>
+
+						<div class="tabs">
+							<ul class="nav nav-tabs nav-justified d-none" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-content-1" role="tab" aria-controls="tab-content-1" aria-selected="true">1</a>
+								</li>
+							</ul>
+							<div class="tab-content d-none" id="myTabContent">
+								<div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="tab-1">CSS 1</div>
+							</div>
+						</div>
+
 						<form>
 							<div class="form-group row">
 								<div class="col-12">
@@ -156,18 +185,8 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-12">
-									<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
-									<a
-										tabindex="0"
-										class="btn btn-primary btn-copy"
-										role="button"
-										data-toggle="popover"
-										data-placement="top"
-										data-trigger="focus"
-										data-content="Coppied"
-										style="color: white;"
-										>Copy Code</a
-									>
+									<a type="button" class="btn btn-outline-success btn-add">Add</a>
+									<a type="button" class="btn btn-outline-danger btn-del disabled">Delete</a>
 								</div>
 							</div>
 						</form>
@@ -204,23 +223,78 @@
 	<script src="../js/components.js"></script>
 	<!-- endbuild -->
 	<script>
+		function formatStyle(type, color, x, y, blur, spread) {
+			if (type === "None") return "none";
+			else if (type === "Inset") return x + "px " + y + "px " + blur + "px " + spread + "px " + color + " inset";
+			else return x + "px " + y + "px " + blur + "px " + spread + "px " + color;
+		}
+
 		function update() {
+			// Get form data
 			const type = $(".form-btn:checked").parent().text().trim();
-			let style = "none";
+			const color = $("#form-color").val();
+			const x = $("#position-h").val();
+			const y = $("#position-v").val();
+			const blur = $("#radius-blur").val();
+			const spread = $("#radius-spread").val();
 
-			if (type !== "None") {
-				const color = $("#form-color").val();
-				const x = $("#position-h").val();
-				const y = $("#position-v").val();
-				const blur = $("#radius-blur").val();
-				const spread = $("#radius-spread").val();
+			// Update current tab text
+			const data = type + "|" + color + "|" + x + "|" + y + "|" + blur + "|" + spread;
+			$(".tabs .tab-content .active").text(data);
 
-				style = x + "px " + y + "px " + blur + "px " + spread + "px " + color;
+			// Update CSS
+			const content = $(".tabs .tab-content").children();
+			let styles = "";
 
-				if (type === "Inset") style += " inset";
+			for (let i = 0; i < content.length; i++) {
+				let style = formatStyle(...content[i].innerHTML.split("|"));
+				if (style !== "none") {
+					if (styles !== "") styles += ", ";
+
+					styles += style;
+				}
 			}
 
-			$(".box").css("box-shadow", style);
+			if (styles === "") styles = "none";
+
+			$(".box").css("box-shadow", styles);
+		}
+
+		function updateForm(element) {
+			const id = element.children("a").attr("href");
+			const content = $(".tabs .tab-content " + id);
+			const vals = content.text().split("|");
+
+			// Update form
+			// Shadow Type
+			const btnParent = $(".form-btn:checked").parent().parent();
+			btnParent.children(".active").removeClass("active");
+			$(".form-btn:checked").attr("checked", false);
+			btnParent.children().each(function () {
+				if ($(this).text().trim() === vals[0]) {
+					$(this).children()[0].checked = true;
+					$(this).addClass("active");
+				}
+			});
+
+			// Color
+			$("#form-color").val(vals[1]);
+			$(".color").colorpicker("setValue", vals[1]);
+
+			//Position
+			$("#position-h").val(vals[2]);
+			$("#position-v").val(vals[3]);
+
+			// Radius
+			$("#radius-blur").val(vals[4]);
+			$("#radius-spread").val(vals[5]);
+		}
+
+		function addTabListener(element) {
+			element.on("shown.bs.tab", function (e) {
+				updateForm(element);
+				update();
+			});
 		}
 
 		$(document).ready(function () {
@@ -237,6 +311,28 @@
 				copyCode("box-shadow");
 			});
 
+			$(".btn-add").click(function () {
+				addTab();
+				addTabListener($(".tabs .nav-tabs li:last-child"));
+			});
+
+			$(".btn-del").click(function () {
+				let current = 0;
+
+				$(".tabs")
+					.children(".nav-tabs")
+					.children()
+					.each(function () {
+						if ($(this).children().hasClass("active")) {
+							current = parseInt($(this).children().attr("id").split("-")[1]);
+						}
+					});
+
+				if (current !== 0) removeTab(current);
+				update();
+			});
+
+			addTabListener($(".tabs .nav-tabs li:last-child"));
 			update();
 		});
 	</script>

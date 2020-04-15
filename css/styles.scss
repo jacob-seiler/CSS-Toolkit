@@ -1,5 +1,7 @@
 $light: #f8f9fa;
 $primary: #0069d9;
+$success: #28a745;
+$danger: #dc3545;
 
 @mixin view-small() {
 	@media (min-width: 576px) {
@@ -105,4 +107,20 @@ footer {
 
 span.colorpicker-input-addon::before {
 	background: none;
+}
+
+.btn-del {
+	color: $danger !important;
+}
+
+.btn-del:hover {
+	color: white !important;
+}
+
+.btn-add {
+	color: $success !important;
+}
+
+.btn-add:hover {
+	color: white !important;
 }

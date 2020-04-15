@@ -90,4 +90,20 @@ footer .container .row .col-sm-8 .breadcrumb {
 span.colorpicker-input-addon::before {
   background: none;
 }
+
+.btn-del {
+  color: #dc3545 !important;
+}
+
+.btn-del:hover {
+  color: white !important;
+}
+
+.btn-add {
+  color: #28a745 !important;
+}
+
+.btn-add:hover {
+  color: white !important;
+}
 /*# sourceMappingURL=styles.css.map */
