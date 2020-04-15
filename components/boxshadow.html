@@ -223,12 +223,6 @@
 	<script src="../js/components.js"></script>
 	<!-- endbuild -->
 	<script>
-		function formatStyle(type, color, x, y, blur, spread) {
-			if (type === "None") return "none";
-			else if (type === "Inset") return x + "px " + y + "px " + blur + "px " + spread + "px " + color + " inset";
-			else return x + "px " + y + "px " + blur + "px " + spread + "px " + color;
-		}
-
 		function update() {
 			// Get form data
 			const type = $(".form-btn:checked").parent().text().trim();
@@ -247,12 +241,18 @@
 			let styles = "";
 
 			for (let i = 0; i < content.length; i++) {
-				let style = formatStyle(...content[i].innerHTML.split("|"));
-				if (style !== "none") {
-					if (styles !== "") styles += ", ";
+				const values = data.split("|");
+				if (values[0] === "None") continue;
 
-					styles += style;
-				}
+				let style = values[2] + "px "; // x
+				style += values[3] + "px "; // y
+				style += values[4] + "px "; // blur
+				style += values[5] + "px "; // spread
+				style += values[1]; // color
+				if (values[0] === "Inset") style += " inset";
+
+				if (styles !== "") styles += ", ";
+				styles += style;
 			}
 
 			if (styles === "") styles = "none";
