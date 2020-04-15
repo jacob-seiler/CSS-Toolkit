@@ -55,43 +55,29 @@ function addTab() {
 }
 
 function removeTab(tabnum) {
-	// Check if not last tab
-
-	$(".tabs")
-		.children(".nav-tabs")
-		.children(".nav-item")
-		.children("#tab-" + tabnum)
+	$(".tabs .nav-tabs .nav-item #tab-" + tabnum)
 		.parent()
 		.remove();
 
-	$(".tabs")
-		.children(".tab-content")
-		.children("#tab-content-" + tabnum)
-		.remove();
+	$(".tabs .tab-content #tab-content-" + tabnum).remove();
 
 	cleanTabs();
 	setActiveTab(tabnum);
 
 	// If only one tab, hide
-	if ($(".tabs").children(".nav-tabs").children().length < 2) $(".tabs").children(".nav-tabs").addClass("d-none");
+	if ($(".tabs .nav-tabs").children().length < 2) $(".tabs .nav-tabs").addClass("d-none");
 }
 
 function renameTab(tabnumOld, tabnumNew) {
 	if (tabnumOld === tabnumNew) return;
 
-	const header = $(".tabs")
-		.children(".nav-tabs")
-		.children(".nav-item")
-		.children("#tab-" + tabnumOld);
-
+	const header = $(".tabs .nav-tabs .nav-item #tab-" + tabnumOld);
 	header.attr("id", "tab-" + tabnumNew);
 	header.attr("href", "#tab-content-" + tabnumNew);
 	header.attr("aria-controls", "tab-content-" + tabnumNew);
 	header.text(tabnumNew);
 
-	const body = $(".tabs")
-		.children(".tab-content")
-		.children("#tab-content-" + tabnumOld);
+	const body = $(".tabs .tab-content #tab-content-" + tabnumOld);
 	body.attr("id", "tab-content-" + tabnumNew);
 	body.attr("aria-labelledby", "tab-" + tabnumNew);
 }
@@ -102,7 +88,7 @@ function setActiveTab(tabnum) {
 }
 
 function cleanTabs() {
-	const header = $(".tabs").children(".nav-tabs").children(".nav-item");
+	const header = $(".tabs .nav-tabs").children(".nav-item");
 
 	for (var i = 0; i < header.length; i++) {
 		const tabnum = parseInt(header[i].children[0].id.split("-")[1]);
@@ -110,7 +96,7 @@ function cleanTabs() {
 		if (tabnum !== i + 1) renameTab(tabnum, i + 1);
 	}
 
-	if (!header.children("a").hasClass("active")) setActiveTab(header.length);
+	if (!header.children().hasClass("active")) setActiveTab(header.length);
 
 	// Disable delete button when only 1 tab
 	if (header.length < 2) $(".btn-del").addClass("disabled");

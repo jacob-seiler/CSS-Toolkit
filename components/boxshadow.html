@@ -317,18 +317,10 @@
 			});
 
 			$(".btn-del").click(function () {
-				let current = 0;
+				const current = $(".tabs .nav-tabs .active");
 
-				$(".tabs")
-					.children(".nav-tabs")
-					.children()
-					.each(function () {
-						if ($(this).children().hasClass("active")) {
-							current = parseInt($(this).children().attr("id").split("-")[1]);
-						}
-					});
+				if (current !== undefined) removeTab(parseInt(current.attr("id").split("-")[1]));
 
-				if (current !== 0) removeTab(current);
 				update();
 			});
 
