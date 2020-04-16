@@ -223,74 +223,40 @@
 	<script src="../js/components.js"></script>
 	<!-- endbuild -->
 	<script>
-		function updateCSS() {
-			// Get data
-			const content = $(".tabs .tab-content").children();
-			let data = [];
-
-			for (let i = 0; i < content.length; i++) data.push(content[i].innerHTML.split("|"));
-
-			// Style
-			let styles = "";
-
-			for (let i = 0; i < data.length; i++) {
-				const values = data[i];
-				let type = values[0];
-
-				if (type === "None") continue;
-
-				let style = values[1] + "px "; // x
-				style += values[2] + "px "; // y
-				style += values[3] + "px "; // blur
-				style += values[4] + "px "; // spread
-				style += values[5]; // color
-
-				if (type === "Inset") style += " inset";
-
-				if (styles === "") styles = style;
-				else styles += ", " + style;
-			}
-
-			if (styles === "") styles = "none";
-
-			// Apply
-			$(".box").css("box-shadow", styles);
-		}
-
-		function update() {
-			// Get form data
-			const formData = getFormData(true);
-
-			// Update current tab text
-			const data = formData.join("|");
-			$(".tabs .tab-content .active").text(data);
-
-			// Update CSS
-			updateCSS();
-		}
-
 		$(document).ready(function () {
-			$(".btn-add").click(function () {
-				addTab();
-				addTabListener($(".tabs .nav-tabs li:last-child"));
-				update();
+			setCSSUpdateFunction(function () {
+				// Get data
+				const content = $(".tabs .tab-content").children();
+				let data = [];
+
+				for (let i = 0; i < content.length; i++) data.push(content[i].innerHTML.split("|"));
+
+				// Style
+				let styles = "";
+
+				for (let i = 0; i < data.length; i++) {
+					const values = data[i];
+					let type = values[0];
+
+					if (type === "None") continue;
+
+					let style = values[1] + "px "; // x
+					style += values[2] + "px "; // y
+					style += values[3] + "px "; // blur
+					style += values[4] + "px "; // spread
+					style += values[5]; // color
+
+					if (type === "Inset") style += " inset";
+
+					if (styles === "") styles = style;
+					else styles += ", " + style;
+				}
+
+				if (styles === "") styles = "none";
+
+				// Apply
+				$(".box").css("box-shadow", styles);
 			});
-
-			$(".btn-del").click(function () {
-				const current = $(".tabs .nav-tabs .active");
-
-				if (current !== undefined) removeTab(parseInt(current.attr("id").split("-")[1]));
-
-				update();
-			});
-
-			$("input[update-value]").each(function () {
-				if ($(this).hasClass("form-btn")) $(this).click(update);
-				else $(this).change(update);
-			});
-
-			addTabListener($(".tabs .nav-tabs li:last-child"));
-			update();
 		});
 	</script>
 </html>

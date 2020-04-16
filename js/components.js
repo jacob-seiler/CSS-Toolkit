@@ -179,6 +179,25 @@ function addTabListener(element) {
 	});
 }
 
+function update() {
+	// Get form data
+	const formData = getFormData(true);
+
+	// Update current tab text
+	const data = formData.join("|");
+	$(".tabs .tab-content .active").text(data);
+
+	// Update CSS
+	funcCSS();
+}
+
+let funcCSS = undefined;
+
+function setCSSUpdateFunction(func) {
+	funcCSS = func;
+	update();
+}
+
 $(document).ready(function () {
 	$(".btn-view").click(function () {
 		setCode("box-shadow");
@@ -187,4 +206,25 @@ $(document).ready(function () {
 	$(".btn-copy").on("shown.bs.popover", function () {
 		copyCode("box-shadow");
 	});
+
+	$(".btn-add").click(function () {
+		addTab();
+		addTabListener($(".tabs .nav-tabs li:last-child"));
+		update();
+	});
+
+	$(".btn-del").click(function () {
+		const current = $(".tabs .nav-tabs .active");
+
+		if (current !== undefined) removeTab(parseInt(current.attr("id").split("-")[1]));
+
+		update();
+	});
+
+	$("input[update-value]").each(function () {
+		if ($(this).hasClass("form-btn")) $(this).click(update);
+		else $(this).change(update);
+	});
+
+	addTabListener($(".tabs .nav-tabs li:last-child"));
 });
