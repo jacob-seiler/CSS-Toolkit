@@ -134,10 +134,10 @@
 								<div class="col-12">
 									<label for="shadow" class="lead">Shadow Type</label>
 									<div class="row col-12">
-										<div class="btn-group btn-group-toggle" data-toggle="buttons">
-											<label class="btn btn-secondary active"> <input class="form-btn update" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
-											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
-											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-none" /> None </label>
+										<div class="btn-group btn-group-toggle" data-toggle="buttons" id="shadow-buttons">
+											<label class="btn btn-secondary active"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
+											<label class="btn btn-secondary"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
+											<label class="btn btn-secondary"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-none" /> None </label>
 										</div>
 									</div>
 								</div>
@@ -148,11 +148,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="position-h">Horizontal</label>
-											<input class="form-control update" type="number" value="10" name="position-h" id="position-h" />
+											<input class="form-control" update-value="%vpx" type="number" value="10" name="position-h" id="position-h" />
 										</div>
 										<div class="col-6">
 											<label for="position-v">Vertical</label>
-											<input class="form-control update" type="number" value="10" name="position-v" id="position-v" />
+											<input class="form-control" update-value="%vpx" type="number" value="10" name="position-v" id="position-v" />
 										</div>
 									</div>
 								</div>
@@ -163,11 +163,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="radius-blur">Blur</label>
-											<input class="form-control update" type="number" value="5" name="radius-blur" id="radius-blur" />
+											<input class="form-control" update-value="%vpx" type="number" value="5" name="radius-blur" id="radius-blur" />
 										</div>
 										<div class="col-6">
 											<label for="radius-spread">Spread</label>
-											<input class="form-control update" type="number" value="0" name="radius-spread" id="radius-spread" />
+											<input class="form-control" update-value="%vpx" type="number" value="0" name="radius-spread" id="radius-spread" />
 										</div>
 									</div>
 								</div>
@@ -179,7 +179,7 @@
 										<span class="input-group-append">
 											<span class="input-group-text colorpicker-input-addon"><i></i></span>
 										</span>
-										<input type="text" class="form-control input-lg update" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
+										<input type="text" class="form-control input-lg" update-value="%v" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
 									</div>
 								</div>
 							</div>
@@ -223,97 +223,57 @@
 	<script src="../js/components.js"></script>
 	<!-- endbuild -->
 	<script>
-		function update() {
-			// Get form data
-			const type = $(".form-btn:checked").parent().text().trim();
-			const color = $("#form-color").val();
-			const x = $("#position-h").val();
-			const y = $("#position-v").val();
-			const blur = $("#radius-blur").val();
-			const spread = $("#radius-spread").val();
-
-			// Update current tab text
-			const data = type + "|" + color + "|" + x + "|" + y + "|" + blur + "|" + spread;
-			$(".tabs .tab-content .active").text(data);
-
-			// Update CSS
+		function updateCSS() {
+			// Get data
 			const content = $(".tabs .tab-content").children();
+			let data = [];
+
+			for (let i = 0; i < content.length; i++) data.push(content[i].innerHTML.split("|"));
+
+			// Style
 			let styles = "";
 
-			for (let i = 0; i < content.length; i++) {
-				const values = content[i].innerHTML.split("|");
-				if (values[0] === "None") continue;
+			for (let i = 0; i < data.length; i++) {
+				const values = data[i];
+				let type = values[0];
 
-				let style = values[2] + "px "; // x
-				style += values[3] + "px "; // y
-				style += values[4] + "px "; // blur
-				style += values[5] + "px "; // spread
-				style += values[1]; // color
-				if (values[0] === "Inset") style += " inset";
+				if (type === "None") continue;
 
-				if (styles !== "") styles += ", ";
-				styles += style;
+				let style = values[1] + "px "; // x
+				style += values[2] + "px "; // y
+				style += values[3] + "px "; // blur
+				style += values[4] + "px "; // spread
+				style += values[5]; // color
+
+				if (type === "Inset") style += " inset";
+
+				if (styles === "") styles = style;
+				else styles += ", " + style;
 			}
 
 			if (styles === "") styles = "none";
 
+			// Apply
 			$(".box").css("box-shadow", styles);
 		}
 
-		function updateForm(element) {
-			const id = element.children("a").attr("href");
-			const content = $(".tabs .tab-content " + id);
-			const vals = content.text().split("|");
+		function update() {
+			// Get form data
+			const formData = getFormData(true);
 
-			// Update form
-			// Shadow Type
-			const btnParent = $(".form-btn:checked").parent().parent();
-			btnParent.children(".active").removeClass("active");
-			$(".form-btn:checked").attr("checked", false);
-			btnParent.children().each(function () {
-				if ($(this).text().trim() === vals[0]) {
-					$(this).children()[0].checked = true;
-					$(this).addClass("active");
-				}
-			});
+			// Update current tab text
+			const data = formData.join("|");
+			$(".tabs .tab-content .active").text(data);
 
-			// Color
-			$("#form-color").val(vals[1]);
-			$(".color").colorpicker("setValue", vals[1]);
-
-			//Position
-			$("#position-h").val(vals[2]);
-			$("#position-v").val(vals[3]);
-
-			// Radius
-			$("#radius-blur").val(vals[4]);
-			$("#radius-spread").val(vals[5]);
-		}
-
-		function addTabListener(element) {
-			element.on("shown.bs.tab", function (e) {
-				updateForm(element);
-				update();
-			});
+			// Update CSS
+			updateCSS();
 		}
 
 		$(document).ready(function () {
-			$(".update").each(function () {
-				if ($(this).hasClass("form-btn")) $(this).click(update);
-				else $(this).change(update);
-			});
-
-			$(".btn-view").click(function () {
-				setCode("box-shadow");
-			});
-
-			$(".btn-copy").on("shown.bs.popover", function () {
-				copyCode("box-shadow");
-			});
-
 			$(".btn-add").click(function () {
 				addTab();
 				addTabListener($(".tabs .nav-tabs li:last-child"));
+				update();
 			});
 
 			$(".btn-del").click(function () {
@@ -322,6 +282,11 @@
 				if (current !== undefined) removeTab(parseInt(current.attr("id").split("-")[1]));
 
 				update();
+			});
+
+			$("input[update-value]").each(function () {
+				if ($(this).hasClass("form-btn")) $(this).click(update);
+				else $(this).change(update);
 			});
 
 			addTabListener($(".tabs .nav-tabs li:last-child"));

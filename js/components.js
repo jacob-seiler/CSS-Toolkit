@@ -102,3 +102,89 @@ function cleanTabs() {
 	if (header.length < 2) $(".btn-del").addClass("disabled");
 	else $(".btn-del").removeClass("disabled");
 }
+
+function getFormData(raw) {
+	let data = [];
+
+	$("input[update-value]").each(function () {
+		let content = $(this).attr("update-value");
+		const type = $(this).attr("type");
+		let val = "";
+
+		// Format
+		if (type === "text" || type === "number") {
+			// Text or number
+			val = $(this).val();
+		} else if (type === "radio") {
+			// Radio
+			if (!$(this).parent().hasClass("active")) return;
+
+			val = $(this).parent().text().trim();
+		} else {
+			// Other
+			console.log("TODO: Type is: " + $(this).attr("type"));
+		}
+
+		if (raw) content = val;
+		else content = content.split("%v").join(val);
+
+		data.push(content);
+	});
+
+	return data;
+}
+
+function setFormData(element) {
+	const id = element.children("a").attr("href");
+	const content = $(".tabs .tab-content " + id);
+	const vals = content.text().split("|");
+
+	let index = 0;
+	let prevId = undefined;
+
+	$("input[update-value]").each(function () {
+		if (prevId !== undefined && prevId == $(this).parent().parent().attr("id")) index--;
+
+		prevId = undefined;
+		const type = $(this).attr("type");
+		const currVal = vals[index];
+
+		if (type === "text" || type === "number") {
+			$(this).val(currVal);
+
+			if ($(this).parent().hasClass("color")) $(this).parent().colorpicker("setValue", currVal);
+		} else if (type === "radio") {
+			const val = $(this).parent().text().trim();
+
+			if (val === currVal) {
+				$(this).parent().addClass("active");
+				$(this)[0].checked = true;
+			} else {
+				$(this).parent().removeClass("active");
+				$(this)[0].checked = false;
+			}
+
+			prevId = $(this).parent().parent().attr("id");
+		} else {
+			console.log("TODO: Type is: " + type);
+		}
+
+		index++;
+	});
+}
+
+function addTabListener(element) {
+	element.on("shown.bs.tab", function (e) {
+		setFormData(element);
+	});
+}
+
+$(document).ready(function () {
+	$(".btn-view").click(function () {
+		setCode("box-shadow");
+	});
+
+	$(".btn-copy").on("shown.bs.popover", function () {
+		copyCode("box-shadow");
+	});
+});
