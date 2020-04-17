@@ -103,30 +103,26 @@ function cleanTabs() {
 	else $(".btn-del").removeClass("disabled");
 }
 
-function getFormData(raw) {
+function getFormData() {
 	let data = [];
 
-	$("input[update-value]").each(function () {
-		let content = $(this).attr("update-value");
+	$(".update").each(function () {
+		let content = undefined;
 		const type = $(this).attr("type");
-		let val = "";
 
 		// Format
 		if (type === "text" || type === "number") {
 			// Text or number
-			val = $(this).val();
+			content = $(this).val();
 		} else if (type === "radio") {
 			// Radio
 			if (!$(this).parent().hasClass("active")) return;
 
-			val = $(this).parent().text().trim();
+			content = $(this).parent().text().trim();
 		} else {
 			// Other
 			console.log("TODO: Type is: " + $(this).attr("type"));
 		}
-
-		if (raw) content = val;
-		else content = content.split("%v").join(val);
 
 		data.push(content);
 	});
@@ -142,7 +138,7 @@ function setFormData(element) {
 	let index = 0;
 	let prevId = undefined;
 
-	$("input[update-value]").each(function () {
+	$(".update").each(function () {
 		if (prevId !== undefined && prevId == $(this).parent().parent().attr("id")) index--;
 
 		prevId = undefined;
@@ -181,7 +177,7 @@ function addTabListener(element) {
 
 function update() {
 	// Get form data
-	const formData = getFormData(true);
+	const formData = getFormData();
 
 	// Update current tab text
 	const data = formData.join("|");
@@ -199,14 +195,6 @@ function setCSSUpdateFunction(func) {
 }
 
 $(document).ready(function () {
-	$(".btn-view").click(function () {
-		setCode("box-shadow");
-	});
-
-	$(".btn-copy").on("shown.bs.popover", function () {
-		copyCode("box-shadow");
-	});
-
 	$(".btn-add").click(function () {
 		addTab();
 		addTabListener($(".tabs .nav-tabs li:last-child"));
@@ -221,7 +209,7 @@ $(document).ready(function () {
 		update();
 	});
 
-	$("input[update-value]").each(function () {
+	$(".update").each(function () {
 		if ($(this).hasClass("form-btn")) $(this).click(update);
 		else $(this).change(update);
 	});

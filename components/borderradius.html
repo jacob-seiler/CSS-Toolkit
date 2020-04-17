@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>CSS Toolkit</title>
+
+		<!-- build:css css/main.css -->
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<!-- endbuild -->
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="../index.html">CSS Toolkit</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="../index.html">Home</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="../components.html">Components <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../examples.html">Examples</a>
+						</li>
+					</ul>
+					<form id="search-form" class="form-inline my-2 my-lg-0 dropdown">
+						<input class="form-control mr-sm-2 dropdown-toggle" id="search" type="text" aria-label="Search" placeholder="Search" autocomplete="off" onkeyup="filter()" />
+						<div class="dropdown-menu" data-toggle="dropdown" role="menu" aria-labelledby="dropdownMenuButton" id="search-dropdown">
+							<a class="dropdown-item" href="#" onclick="travel(this)">Border Radius <span class="badge badge-secondary">Component</span></a>
+							<a class="dropdown-item" href="../examples/borderradius.html" onclick="travel(this)">Border Radius <span class="badge badge-secondary">Example</span></a>
+							<a class="dropdown-item" href="#" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Component</span></a>
+							<a class="dropdown-item" href="../examples/boxshadow.html" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Example</span></a>
+							<p id="no-results" class="dropdown-item mb-0">No Results</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</nav>
+
+		<div class="modal fade" id="code-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabel">Border Radius Code</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="code-paste"></p>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white;">Close</a>
+						<a tabindex="0" class="btn btn-primary btn-copy" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Coppied" style="color: white;"
+							>Copy Code</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<div class="jumbotron jumbotron-fluid">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-12 col-md-8">
+							<div class="row">
+								<div class="col-12">
+									<h1 class="display-3">Border Radius</h1>
+								</div>
+								<div class="col-12">
+									<hr />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-md-7 order-md-last" id="col-demo">
+						<div class="demo">
+							<div class="box"></div>
+						</div>
+					</div>
+					<div class="col-12 col-md-5 order-md-first" id="col-form">
+						<h4 class="display-4">Customize</h4>
+
+						<div class="row mb-3">
+							<div class="col-12">
+								<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
+								<a
+									tabindex="0"
+									class="btn btn-primary btn-copy"
+									role="button"
+									data-toggle="popover"
+									data-placement="top"
+									data-trigger="focus"
+									data-content="Coppied"
+									style="color: white;"
+									>Copy Code</a
+								>
+							</div>
+						</div>
+
+						<div class="tabs">
+							<ul class="nav nav-tabs nav-justified d-none" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-content-1" role="tab" aria-controls="tab-content-1" aria-selected="true">1</a>
+								</li>
+							</ul>
+							<div class="tab-content d-none" id="myTabContent">
+								<div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="tab-1">CSS 1</div>
+							</div>
+						</div>
+
+						<form>
+							<div class="form-group row">
+								<div class="col-12">
+									<label for="control" class="lead">Corners</label>
+									<div class="row">
+										<div class="col-12">
+											<div class="btn-group btn-group-toggle" data-toggle="buttons" id="corner-buttons">
+												<label class="btn btn-secondary active"> <input class="form-btn btn-corner" type="radio" name="control" id="control-all" checked /> All </label>
+												<label class="btn btn-secondary"> <input class="form-btn btn-corner" type="radio" name="control" id="control-individual" /> Individual </label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-12">
+									<label for="radius" class="lead">Radius Type</label>
+									<div class="row">
+										<div class="col-12">
+											<div class="btn-group btn-group-toggle" data-toggle="buttons" id="radius-buttons">
+												<label class="btn btn-secondary active"> <input class="form-btn btn-radius" type="radio" name="radius" id="radius-circular" checked /> Circular </label>
+												<label class="btn btn-secondary"> <input class="form-btn btn-radius" type="radio" name="radius" id="radius-elliptical" /> Elliptical </label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-12">
+									<div class="row">
+										<div class="col-4 col-circular-title">
+											<label class="lead">Corner</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<label class="lead" id="table-header">Radius</label>
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<label class="lead">Vertical Radius</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row input-all">
+										<div class="col-4 col-circular-title">
+											<label for="radius-all">All</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<input class="form-control update" type="number" value="10" name="radius-all" id="radius-all-h" />
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<input class="form-control update" type="number" value="10" name="radius-all" id="radius-all-v" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row mb-1 input-individual d-none">
+										<div class="col-4 col-circular-title">
+											<label for="radius-tl">Top Left</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<input class="form-control update" type="number" value="10" name="radius-tl" id="radius-tl-h" />
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<input class="form-control update" type="number" value="10" name="radius-tl" id="radius-tl-v" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row mb-1 input-individual d-none">
+										<div class="col-4 col-circular-title">
+											<label for="radius-tr">Top Right</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<input class="form-control update" type="number" value="10" name="radius-tr" id="radius-tr-h" />
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<input class="form-control update" type="number" value="10" name="radius-tr" id="radius-tr-v" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row mb-1 input-individual d-none">
+										<div class="col-4 col-circular-title">
+											<label for="radius-br">Bottom Right</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<input class="form-control update" type="number" value="10" name="radius-br" id="radius-br-h" />
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<input class="form-control update" type="number" value="10" name="radius-br" id="radius-br-v" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row input-individual d-none">
+										<div class="col-4 col-circular-title">
+											<label for="radius-bl">Bottom Left</label>
+										</div>
+										<div class="col-8 col-circular-fields">
+											<div class="row">
+												<div class="col-12 col-circular-field">
+													<input class="form-control update" type="number" value="10" name="radius-bl" id="radius-bl-h" />
+												</div>
+												<div class="col-6 col-elliptical d-none">
+													<input class="form-control update" type="number" value="10" name="radius-bl" id="radius-bl-v" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-12 col-sm-8">
+						<nav aria-label="breadcrumb justify-content-center">
+							<ol class="breadcrumb margin-fix">
+								<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+								<li class="breadcrumb-item"><a href="../components.html">Components</a></li>
+								<li class="breadcrumb-item active">Border Radius</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="col-12 col-sm-4">
+						<p class="margin-fix text-center text-sm-right">&copy; Jacob Seiler 2020</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+	<!-- build:js js/main.js -->
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/components.js"></script>
+	<!-- endbuild -->
+	<script>
+		$(document).ready(function () {
+			$(".btn-view").click(function () {
+				setCode("border-radius");
+			});
+
+			$(".btn-copy").on("shown.bs.popover", function () {
+				copyCode("border-radius");
+			});
+
+			$(".btn-corner").click(function () {
+				let id = $(this).attr("id").split("-")[1];
+
+				if (id === "all") {
+					$(".input-all").removeClass("d-none");
+					$(".input-individual").addClass("d-none");
+				} else {
+					$(".input-all").addClass("d-none");
+					$(".input-individual").removeClass("d-none");
+				}
+
+				update();
+			});
+
+			$(".btn-radius").click(function () {
+				let id = $(this).attr("id").split("-")[1];
+
+				if (id === "circular") {
+					$(".col-elliptical").addClass("d-none");
+
+					$("#table-header").text("Radius");
+
+					$("#col-demo").removeClass("col-md-5");
+					$("#col-demo").addClass("col-md-7");
+
+					$("#col-form").removeClass("col-md-7");
+					$("#col-form").addClass("col-md-5");
+
+					$(".col-circular-title").removeClass("col-3");
+					$(".col-circular-title").addClass("col-4");
+
+					$(".col-circular-field").removeClass("col-6");
+					$(".col-circular-field").addClass("col-12");
+
+					$(".col-circular-fields").removeClass("col-9");
+					$(".col-circular-fields").addClass("col-8");
+				} else {
+					$(".col-elliptical").removeClass("d-none");
+
+					$("#table-header").text("Horizontal Radius");
+
+					$("#col-demo").removeClass("col-md-7");
+					$("#col-demo").addClass("col-md-5");
+
+					$("#col-form").removeClass("col-md-5");
+					$("#col-form").addClass("col-md-7");
+
+					$(".col-circular-title").removeClass("col-4");
+					$(".col-circular-title").addClass("col-3");
+
+					$(".col-circular-field").removeClass("col-12");
+					$(".col-circular-field").addClass("col-6");
+
+					$(".col-circular-fields").removeClass("col-8");
+					$(".col-circular-fields").addClass("col-9");
+				}
+
+				update();
+			});
+
+			setCSSUpdateFunction(function () {
+				// Get data
+				const content = $(".tabs .tab-content").children();
+				const values = content[0].innerHTML.split("|");
+
+				// Style
+				const corners = $("#corner-buttons").children(".active").text().trim();
+				const radiusType = $("#radius-buttons").children(".active").text().trim();
+
+				let style = "";
+
+				if (corners === "All") {
+					style = values[0] + "px";
+
+					if (radiusType === "Elliptical") {
+						style += " / " + values[1] + "px";
+					}
+				} else {
+					style = values[2] + "px " + values[4] + "px " + values[6] + "px " + values[8] + "px";
+
+					if (radiusType === "Elliptical") {
+						style += " / " + values[3] + "px " + values[5] + "px " + values[7] + "px " + values[9] + "px";
+					}
+				}
+
+				if (style === "") style = "0px";
+
+				// // Apply
+				$(".box").css("border-radius", style);
+			});
+		});
+	</script>
+</html>

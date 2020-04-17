@@ -57,7 +57,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="modalLabel">Box Shadow Example Code</h5>
+						<h5 class="modal-title" id="modalLabel">Border Radius Example Code</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -82,7 +82,7 @@
 						<div class="col-12 col-md-8">
 							<div class="row">
 								<div class="col-12">
-									<h1 class="display-3">Box Shadow</h1>
+									<h1 class="display-3">Border Radius</h1>
 								</div>
 								<div class="col-12">
 									<hr />
@@ -98,7 +98,7 @@
 					<div class="col-12 col-md-6 col-xl-4">
 						<div class="card">
 							<div class="demo-example">
-								<div class="box-example" style="box-shadow: rgba(0, 0, 0, 0.75) 10px 10px 5px 0px;"></div>
+								<div class="box-example" style="border-radius: 15px;"></div>
 							</div>
 							<div class="card-body">
 								<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
@@ -119,7 +119,7 @@
 					<div class="col-12 col-md-6 col-xl-4">
 						<div class="card">
 							<div class="demo-example">
-								<div class="box-example" style="box-shadow: rgba(0, 121, 255, 0.75) 0px 10px 0px 0px;"></div>
+								<div class="box-example" style="border-radius: 40px 60px;"></div>
 							</div>
 							<div class="card-body">
 								<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
@@ -140,7 +140,7 @@
 					<div class="col-12 col-md-6 col-xl-4">
 						<div class="card">
 							<div class="demo-example">
-								<div class="box-example" style="box-shadow: rgba(255, 255, 255, 0.75) 0px 0px 15px 2px inset;"></div>
+								<div class="box-example" style="border-radius: 40px 60px / 60px 40px;"></div>
 							</div>
 							<div class="card-body">
 								<a type="button" class="btn btn-success btn-view" data-toggle="modal" data-target="#code-modal" style="color: white;">View Code</a>
@@ -170,7 +170,7 @@
 							<ol class="breadcrumb margin-fix">
 								<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
 								<li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-								<li class="breadcrumb-item active">Box Shadow</li>
+								<li class="breadcrumb-item active">Border Radius</li>
 							</ol>
 						</nav>
 					</div>
@@ -191,11 +191,11 @@
 	<!-- endbuild -->
 	<script>
 		$(".btn-view").click(function () {
-			setCode($(this), "box-shadow");
+			setCode($(this), "border-radius");
 		});
 
 		$(".btn-copy").on("shown.bs.popover", function () {
-			copyCode($(this), "box-shadow");
+			copyCode($(this), "border-radius");
 		});
 	</script>
 </html>

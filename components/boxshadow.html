@@ -42,6 +42,8 @@
 					<form id="search-form" class="form-inline my-2 my-lg-0 dropdown">
 						<input class="form-control mr-sm-2 dropdown-toggle" id="search" type="text" aria-label="Search" placeholder="Search" autocomplete="off" onkeyup="filter()" />
 						<div class="dropdown-menu" data-toggle="dropdown" role="menu" aria-labelledby="dropdownMenuButton" id="search-dropdown">
+							<a class="dropdown-item" href="../components/borderradius.html" onclick="travel(this)">Border Radius <span class="badge badge-secondary">Component</span></a>
+							<a class="dropdown-item" href="../examples/borderradius.html" onclick="travel(this)">Border Radius <span class="badge badge-secondary">Example</span></a>
 							<a class="dropdown-item" href="#" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Component</span></a>
 							<a class="dropdown-item" href="../examples/boxshadow.html" onclick="travel(this)">Box Shadow <span class="badge badge-secondary">Example</span></a>
 							<p id="no-results" class="dropdown-item mb-0">No Results</p>
@@ -135,9 +137,9 @@
 									<label for="shadow" class="lead">Shadow Type</label>
 									<div class="row col-12">
 										<div class="btn-group btn-group-toggle" data-toggle="buttons" id="shadow-buttons">
-											<label class="btn btn-secondary active"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
-											<label class="btn btn-secondary"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
-											<label class="btn btn-secondary"> <input class="form-btn" update-value="%v" type="radio" name="shadow" id="shadow-none" /> None </label>
+											<label class="btn btn-secondary active"> <input class="form-btn update" type="radio" name="shadow" id="shadow-outset" checked /> Outset </label>
+											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-inset" /> Inset </label>
+											<label class="btn btn-secondary"> <input class="form-btn update" type="radio" name="shadow" id="shadow-none" /> None </label>
 										</div>
 									</div>
 								</div>
@@ -148,11 +150,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="position-h">Horizontal</label>
-											<input class="form-control" update-value="%vpx" type="number" value="10" name="position-h" id="position-h" />
+											<input class="form-control update" type="number" value="10" name="position-h" id="position-h" />
 										</div>
 										<div class="col-6">
 											<label for="position-v">Vertical</label>
-											<input class="form-control" update-value="%vpx" type="number" value="10" name="position-v" id="position-v" />
+											<input class="form-control update" type="number" value="10" name="position-v" id="position-v" />
 										</div>
 									</div>
 								</div>
@@ -163,11 +165,11 @@
 									<div class="row">
 										<div class="col-6">
 											<label for="radius-blur">Blur</label>
-											<input class="form-control" update-value="%vpx" type="number" value="5" name="radius-blur" id="radius-blur" />
+											<input class="form-control update" type="number" value="5" name="radius-blur" id="radius-blur" />
 										</div>
 										<div class="col-6">
 											<label for="radius-spread">Spread</label>
-											<input class="form-control" update-value="%vpx" type="number" value="0" name="radius-spread" id="radius-spread" />
+											<input class="form-control update" type="number" value="0" name="radius-spread" id="radius-spread" />
 										</div>
 									</div>
 								</div>
@@ -179,7 +181,7 @@
 										<span class="input-group-append">
 											<span class="input-group-text colorpicker-input-addon"><i></i></span>
 										</span>
-										<input type="text" class="form-control input-lg" update-value="%v" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
+										<input type="text" class="form-control input-lg update" value="rgba(0,0,0,0.75)" name="color" id="form-color" />
 									</div>
 								</div>
 							</div>
@@ -224,6 +226,14 @@
 	<!-- endbuild -->
 	<script>
 		$(document).ready(function () {
+			$(".btn-view").click(function () {
+				setCode("box-shadow");
+			});
+
+			$(".btn-copy").on("shown.bs.popover", function () {
+				copyCode("box-shadow");
+			});
+
 			setCSSUpdateFunction(function () {
 				// Get data
 				const content = $(".tabs .tab-content").children();
