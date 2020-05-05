@@ -1,0 +1,103 @@
+$light: #f8f9fa;
+$primary: #0069d9;
+$success: #28a745;
+$danger: #dc3545;
+
+@mixin view-small() {
+	@media (min-width: 576px) {
+		@content;
+	}
+}
+
+@mixin view-medium() {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
+.margin-bottom {
+	margin-bottom: 50px;
+}
+
+.margin-fix {
+	margin: 0 auto;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+main {
+	padding-bottom: 120px;
+
+	@include view-small() {
+		padding-bottom: 100px;
+	}
+}
+
+// .demo {
+// 	width: 100%;
+// 	height: 300px;
+
+// 	@include view-medium() {
+// 		height: 100%;
+// 	}
+
+// 	border-radius: 10px;
+// 	background-color: $light;
+// }
+
+// .demo-example {
+// 	height: 200px;
+// 	width: 100%;
+
+// 	border-radius: 10px;
+// 	background-color: $light;
+// }
+
+// .box {
+// 	width: 100px;
+// 	height: 100px;
+
+// 	position: absolute;
+// 	left: 50%;
+// 	margin-left: -50px;
+// 	top: 50%;
+// 	margin-top: -50px;
+
+// 	background-color: $primary;
+// }
+
+// .box-example {
+// 	width: 100px;
+// 	height: 100px;
+
+// 	position: absolute;
+// 	left: 50%;
+// 	margin-left: -50px;
+// 	top: 100px;
+// 	margin-top: -50px;
+
+// 	background-color: $primary;
+// }
+
+// span.colorpicker-input-addon::before {
+// 	background: none;
+// }
+
+// .btn-del {
+// 	color: $danger !important;
+// }
+
+// .btn-del:hover {
+// 	color: white !important;
+// }
+
+// .btn-add {
+// 	color: $success !important;
+// }
+
+// .btn-add:hover {
+// 	color: white !important;
+// }
