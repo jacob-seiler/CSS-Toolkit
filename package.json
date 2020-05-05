@@ -1,37 +1,37 @@
 {
   "name": "css-toolkit",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jacob-seiler/CSS-Toolkit.git"
-  },
-  "author": "Jacob Seiler",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jacob-seiler/CSS-Toolkit/issues"
-  },
-  "homepage": "https://github.com/jacob-seiler/CSS-Toolkit#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "bootstrap-colorpicker": "^3.2.0",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.1"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "bootstrap": "4.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-popper": "0.9.2",
+    "react-scripts": "3.4.1",
+    "reactstrap": "5.0.0"
   },
-  "devDependencies": {
-    "del": "^5.1.0",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-flatmap": "^1.0.2",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-minify": "^3.1.0",
-    "gulp-rev": "^9.0.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-usemin": "^0.3.30"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
