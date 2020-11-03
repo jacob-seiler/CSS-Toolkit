@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import Nav from "react-bootstrap/esm/Nav";
+import Navbar from "react-bootstrap/esm/Navbar";
 import { Link, useLocation } from "react-router-dom";
 
 interface Tab {
@@ -25,30 +25,19 @@ const Header: React.FC = () => {
 	const location = useLocation();
 
 	return (
-		<Nav className="navbar navbar-expand-lg navbar-light bg-light">
+		<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
 			<Container>
 				<Link className="navbar-brand" to="/">
 					CSS Toolkit
 				</Link>
-				<Button
-					className="navbar-toggler"
-					type="button"
-					data-toggle="collapse"
-					data-target="#navbarTogglerDemo02"
-					aria-controls="navbarTogglerDemo02"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<span className="navbar-toggler-icon"></span>
-				</Button>
-
-				<div className="collapse navbar-collapse">
-					<ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-						{tabs.map((tab: Tab) => {
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse>
+					<Nav className="ml-auto">
+						{tabs.map((tab: Tab, i: number) => {
 							const current: boolean = tab.link === location.pathname;
 
 							return (
-								<li className={"nav-item" + (current ? " active" : "")}>
+								<li className={"nav-item" + (current ? " active" : "")} key={i}>
 									<Link
 										className={"nav-link" + (tab.disabled ? " disabled" : "")}
 										to={tab.link}
@@ -59,10 +48,10 @@ const Header: React.FC = () => {
 								</li>
 							);
 						})}
-					</ul>
-				</div>
+					</Nav>
+				</Navbar.Collapse>
 			</Container>
-		</Nav>
+		</Navbar>
 	);
 };
 
