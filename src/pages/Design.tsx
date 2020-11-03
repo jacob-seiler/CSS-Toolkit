@@ -5,10 +5,12 @@ import Container from "react-bootstrap/esm/Container";
 import Jumbotron from "react-bootstrap/esm/Jumbotron";
 import Row from "react-bootstrap/esm/Row";
 import { Link } from "react-router-dom";
+import { Header } from "../components";
 
 const Design: React.FC = () => {
 	return (
 		<>
+			<Header />
 			<Jumbotron>
 				<Container>
 					<h1 className="display-1">Design</h1>

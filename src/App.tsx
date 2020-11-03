@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-// import { Header, Footer } from "./components";
 import { About, Design } from "./pages";
 
 const App: React.FC = () => {
 	return (
 		<Router>
-			{/* <Header /> */}
 			<Switch>
 				<Route path="/about" exact={true}>
 					<About />

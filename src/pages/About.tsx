@@ -3,10 +3,12 @@ import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import Jumbotron from "react-bootstrap/esm/Jumbotron";
 import { Link } from "react-router-dom";
+import { Header } from "../components";
 
 const About: React.FC = () => {
 	return (
 		<>
+			<Header />
 			<Jumbotron fluid>
 				<Container>
 					<h1 className="display-1">About</h1>
