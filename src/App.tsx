@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { Header, Footer } from "./components";
+// import { Header, Footer } from "./components";
 import { About, Design } from "./pages";
 
 const App: React.FC = () => {
 	return (
 		<Router>
-			<Header />
+			{/* <Header /> */}
 			<Switch>
 				<Route path="/about" exact={true}>
 					<About />
@@ -16,7 +16,7 @@ const App: React.FC = () => {
 				</Route>
 				<Redirect path="/" exact={false} to="/" />
 			</Switch>
-			<Footer />
+			{/* <Footer /> */}
 		</Router>
 	);
 };
