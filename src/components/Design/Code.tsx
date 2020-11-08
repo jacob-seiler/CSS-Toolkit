@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { ControlledEditor } from "@monaco-editor/react";
 
-const defaultCode = `function add(a, b) {
-  return a + b;
-}
-`;
-
-// https://www.npmjs.com/package/react-syntax-highlighter
+//https://www.npmjs.com/package/@monaco-editor/react
 const Code: React.FC = () => {
+	const defaultCode = `.box {
+		box-shadow: 10px;
+	}`;
 	const [code, setCode] = useState<string>(defaultCode);
 
+	const options = {
+		selectOnLineNumbers: true,
+	};
+
+	const handleChange = (_: any, value: string | undefined) => {
+		setCode(value || "");
+	};
+
 	return (
-		<SyntaxHighlighter language="javascript" style={docco}>
-			{code}
-		</SyntaxHighlighter>
+		<ControlledEditor
+			value={code}
+			onChange={handleChange}
+			theme="dark"
+			language="css"
+			height="300px"
+			options={options}
+		/>
 	);
 };
 
