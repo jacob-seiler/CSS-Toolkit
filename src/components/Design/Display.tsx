@@ -4,8 +4,18 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 // https://www.npmjs.com/package/react-zoom-pan-pinch
 const Display: React.FC = () => {
+	const options = {
+		limitToWrapper: true,
+		centerContent: true,
+	};
+
 	return (
-		<TransformWrapper defaultScale={1} defaultPositionX={200} defaultPositionY={100}>
+		<TransformWrapper
+			defaultScale={1}
+			defaultPositionX={0}
+			defaultPositionY={0}
+			options={options}
+		>
 			{({ zoomIn, zoomOut, resetTransform, ...rest }: any) => (
 				<>
 					<div className="tools">
@@ -14,7 +24,7 @@ const Display: React.FC = () => {
 						<button onClick={resetTransform}>x</button>
 					</div>
 					<TransformComponent>
-						<div>Display</div>
+						<div style={{ height: "300px", backgroundColor: "red" }}>Display</div>
 					</TransformComponent>
 				</>
 			)}

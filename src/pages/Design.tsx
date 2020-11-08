@@ -11,14 +11,6 @@ const Design: React.FC = () => {
 	return (
 		<>
 			<Header />
-			<Jumbotron>
-				<Container>
-					<h1 className="display-1">Design</h1>
-					<Link to="/about">
-						<Button>Go to about</Button>
-					</Link>
-				</Container>
-			</Jumbotron>
 			<Container>
 				<Row>
 					<Col>
