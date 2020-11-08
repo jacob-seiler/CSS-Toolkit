@@ -10,20 +10,14 @@ const Design: React.FC = () => {
 			<Header />
 			<Container>
 				<Row>
-					<Col>
-						<p>Controls</p>
+					<Col style={{ paddingRight: "0" }}>
+						<div style={{ backgroundColor: "#f3f3f3", height: "100%", width: "100%" }}>
+							Controls
+						</div>
 					</Col>
-					<Col>
-						<Row>
-							<Col>
-								<Display />
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<Code />
-							</Col>
-						</Row>
+					<Col style={{ paddingLeft: "0" }}>
+						<Display />
+						<Code />
 					</Col>
 				</Row>
 			</Container>
