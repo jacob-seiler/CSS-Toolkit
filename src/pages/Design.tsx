@@ -1,10 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
-import Jumbotron from "react-bootstrap/esm/Jumbotron";
 import Row from "react-bootstrap/esm/Row";
-import { Link } from "react-router-dom";
 import { Header, Display, Code } from "../components";
 
 const Design: React.FC = () => {
