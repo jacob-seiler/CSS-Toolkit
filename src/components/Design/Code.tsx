@@ -4,8 +4,8 @@ import { ControlledEditor } from "@monaco-editor/react";
 //https://www.npmjs.com/package/@monaco-editor/react
 const Code: React.FC = () => {
 	const defaultCode = `.box {
-		box-shadow: 10px;
-	}`;
+	box-shadow: 10px;
+}`;
 	const [code, setCode] = useState<string>(defaultCode);
 
 	const options = {
