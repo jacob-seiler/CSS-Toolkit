@@ -1,6 +1,7 @@
 import React from "react";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import "./test.scss";
 
 // https://www.npmjs.com/package/react-zoom-pan-pinch
 const Display: React.FC = () => {
