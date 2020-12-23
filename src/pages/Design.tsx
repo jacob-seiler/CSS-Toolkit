@@ -2,7 +2,7 @@ import React from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
-import { Header, Display, Code } from "../components";
+import { Header, CardManager } from "../components";
 
 const Design: React.FC = () => {
 	return (
@@ -10,14 +10,11 @@ const Design: React.FC = () => {
 			<Header />
 			<Container>
 				<Row>
-					<Col style={{ paddingRight: "0" }}>
-						<div style={{ backgroundColor: "#f3f3f3", height: "100%", width: "100%" }}>
-							Controls
-						</div>
+					<Col>
+						<CardManager />
 					</Col>
-					<Col style={{ paddingLeft: "0" }}>
-						<Display />
-						<Code />
+					<Col>
+						<p>TODO</p>
 					</Col>
 				</Row>
 			</Container>

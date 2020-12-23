@@ -1,5 +1,5 @@
 import Header from "./Header";
 import Footer from "./Footer";
-export * from "./Design";
+export * from "./Cards";
 
 export { Header, Footer };
