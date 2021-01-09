@@ -1,5 +1,6 @@
 import React from "react";
 import AddCardButton from "./AddCardButton";
+import Card from "./Card";
 
 const CardManager: React.FC = () => {
 	/*
@@ -11,6 +12,7 @@ const CardManager: React.FC = () => {
 	return (
 		<>
 			<h1>Customize</h1>
+			<Card />
 			<AddCardButton />
 		</>
 	);

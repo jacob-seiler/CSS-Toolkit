@@ -1,23 +1,13 @@
 import React from "react";
-import Col from "react-bootstrap/esm/Col";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import { Header, CardManager } from "../components";
+import { CardManager, Editor, Preview } from "../components";
+import "./pages.scss";
 
 const Design: React.FC = () => {
 	return (
 		<>
-			<Header />
-			<Container>
-				<Row>
-					<Col>
-						<CardManager />
-					</Col>
-					<Col>
-						<p>TODO</p>
-					</Col>
-				</Row>
-			</Container>
+			<Preview />
+			<Editor />
+			<CardManager />
 		</>
 	);
 };
